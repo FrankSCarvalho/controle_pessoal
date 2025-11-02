@@ -1,5 +1,6 @@
 import webview
 from database import Transacao, GerenciadorBD
+import os
 
 ALTURA = 600
 LARGURA = 1200
@@ -74,5 +75,16 @@ class Api:
 
 if __name__ == "__main__":
     api = Api()
-    janela = webview.create_window("Controle Financeiro Pessoal", "index.html", js_api=api, width=LARGURA, height= ALTURA)
+    
+    # Define o caminho do HTML (assumindo que index.html está na mesma pasta)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    html_path = 'file://' + os.path.join(current_dir, 'index.html') # Apenas 'index.html'
+    
+    webview.create_window(
+        'Controle Financeiro Pessoal', 
+        url=html_path, 
+        js_api=api,
+        width=LARGURA,
+        height=ALTURA
+    )
     webview.start()
