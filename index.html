@@ -5,40 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle Financeiro Pessoal</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
 </head>
 
 <body>
     <div class="container">
-        <!--Coluna Esquerda: Formulário-->
         <div class="formulario">
-            <h2>Cadastro</h2>
-            <form>
+            <h2 id="formTitulo">Cadastro</h2>
+            <form id="transacaoForm">
+                <input type="hidden" id="transacaoId"> 
+
                 <div class="form-item">
-                    <label for="">Usuário: </label>
-                    <input type="text">
+                    <label for="usuario">Usuário: </label>
+                    <input type="text" id="usuario" required>
                 </div>
                 <div class="form-item">
-                    <label for="">Conta: </label>
-                    <input type="text">
+                    <label for="conta">Conta: </label>
+                    <input type="text" id="conta">
                 </div>
                 <div class="form-item">
-                    <label for="">Descrição: </label>
-                    <input type="text">
+                    <label for="descricao">Descrição: </label>
+                    <input type="text" id="descricao" required>
                 </div>
                 <div class="form-item">
-                    <label for="">Valor: </label>
-                    <input type="text">
+                    <label for="valor">Valor: </label>
+                    <input type="text" id="valor" required placeholder="Ex: -500.00 ou 2800.00">
                 </div>
                 <div class="form-item">
-                    <label for="">Data: </label><br>
-                    <input type="date">
+                    <label for="data">Data: </label><br>
+                    <input type="date" id="data" required>
                 </div>
-                <div class="form-item"><button>Salvar</button><button>Limpar</button></div>
+                
+                <div class="form-item">
+                    <button type="button" id="btnSalvar" onclick="salvarOuAtualizar()">Salvar</button>
+                    <button type="button" onclick="limparFormulario()">Limpar</button>
+                </div>
             </form>
         </div>
 
-        <!-- Coluna direita: Tabela -->
         <div class="tabela">
             <h2>Registros</h2>
             <table>
@@ -53,49 +57,13 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>Frank</td>
-                        <td>Banco do Brasil</td>
-                        <td>Energia</td>
-                        <td>R$ -500,00</td>
-                        <td>10/10/2025</td>
-                        <td>
-                            <button>Editar</button>
-                            <button>Apagar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>02</td>
-                        <td>Frank</td>
-                        <td>Banco do Brasil</td>
-                        <td>Cartão de Credito</td>
-                        <td>R$ -419,00</td>
-                        <td>10/10/2025</td>
-                        <td>
-                            <button>Editar</button>
-                            <button>Apagar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>03</td>
-                        <td>Frank</td>
-                        <td>Banco do Brasil</td>
-                        <td>Salario</td>
-                        <td>R$ 2800,00</td>
-                        <td>10/10/2025</td>
-                        <td>
-                            <button>Editar</button>
-                            <button>Apagar</button>
-                        </td>
-                    </tr>
-                </tbody>
+                <tbody id="corpoTabelaTransacoes">
+                    </tbody>
             </table>
-            
         </div>
     </div>
-    <div class="footer"><p>Aqui será exibido as somas de gastos e saldo</p></div>
-</body>
+    <div class="footer"><p id="saldoTotal">Aqui será exibido as somas de gastos e saldo</p></div>
 
+    <script src="scripts.js"></script> 
+</body>
 </html>

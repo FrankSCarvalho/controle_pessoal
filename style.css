@@ -71,9 +71,14 @@ td {
     text-align: left;
 }
 
+.tabela table td{
+    font-size: 15px;
+}
+
 .tabela button {
+    font-size: 10px;
     padding: 5px 7px;
-    width: 70px;
+    width: 55px;
 }
 
 .tabela button:hover {
