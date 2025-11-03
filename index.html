@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle Financeiro Pessoal</title>
     <link rel="stylesheet" href="style.css"> 
-</head>
+
+    </head>
 
 <body>
     <div class="container">
@@ -45,7 +46,7 @@
 
         <div class="tabela">
             <h2>Registros</h2>
-            <table>
+            <table id="tabela-transacoes" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -60,6 +61,12 @@
                 <tbody id="corpoTabelaTransacoes">
                     </tbody>
             </table>
+
+            <div id="controles-paginacao" style="text-align: center; margin-top: 15px;">
+                <button id="btnAnterior" onclick="mudarPagina(-1)" disabled>Anterior</button>
+                <span id="infoPagina">Página 1 de 1</span>
+                <button id="btnProximo" onclick="mudarPagina(1)" disabled>Próximo</button>
+            </div>
         </div>
     </div>
     <div class="footer"><p id="saldoTotal">Aqui será exibido as somas de gastos e saldo</p></div>

@@ -48,7 +48,8 @@ h2 {
     background-color: #ebe7e7;
     flex: 1 1 70%;
     padding: 10px;
-
+    /* MANTIDO: Garante que o container não quebre o layout principal */
+    overflow-x: auto; 
 }
 
 .tabela table {
@@ -57,13 +58,10 @@ h2 {
     background-color: #fff;
     margin-top: 15px;
     border-radius: 5px;
+    
 }
 
-.tabela table th {
-    background-color: #7590ac;
-    color: #fff;
-}
-
+/* Regras de cabeçalho e célula */
 .tabela table th,
 td {
     padding: 10px;
@@ -71,14 +69,27 @@ td {
     text-align: left;
 }
 
-.tabela table td{
-    font-size: 15px;
+.tabela table th {
+    background-color: #7590ac;
+    color: #fff;
 }
 
+.tabela table td{
+    font-size: 12px;
+    
+    /* MANTIDO: Regras para quebra de texto e evitar estouro */
+    white-space: normal;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    word-break: break-all; 
+    overflow: visible; 
+}
+
+/* OUTRAS REGRAS */
 .tabela button {
-    font-size: 10px;
-    padding: 5px 7px;
-    width: 55px;
+    font-size: 8px;
+    padding: 3px 5px;
+    width: 50px;
 }
 
 .tabela button:hover {
@@ -91,4 +102,5 @@ td {
     height: 10vh;
     text-align: right;
     padding: 10px;
+    color: #fff;
 }
