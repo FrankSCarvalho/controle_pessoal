@@ -5,24 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle Financeiro Pessoal</title>
-    <link rel="stylesheet" href="./assets/style.css"> 
+    <link rel="stylesheet" href="./assets/style.css">
 
 </head>
 
 <body>
     <header>
-        <ul>
-            <li>Inicio</li>
-            <li>Entradas</li>
-            <li>Saidas</li>
-            <li>Sobre</li>
-        </ul>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <ul class="navbar-menu">
+                    <li class="navbar-item"><a href="#" class="navbar-link">Inicio</a></li>
+                    <li class="navbar-item"><a href="#" class="navbar-link">Entradas</a></li>
+                    <li class="navbar-item"><a href="#" class="navbar-link">Saidas</a></li>
+                    <li class="navbar-item"><a href="#" class="navbar-link">Sobre</a></li>
+                </ul>
+            </div>
+
+        </nav>
+
     </header>
     <div class="container">
         <div class="formulario">
             <h2 id="formTitulo">Cadastro</h2>
             <form id="transacaoForm">
-                <input type="hidden" id="transacaoId"> 
+                <input type="hidden" id="transacaoId">
 
                 <div class="form-item">
                     <label for="usuario">Usuário: </label>
@@ -44,7 +50,7 @@
                     <label for="data">Data: </label><br>
                     <input type="date" id="data" required>
                 </div>
-                
+
                 <div class="form-item">
                     <button type="button" id="btnSalvar" onclick="salvarOuAtualizar()">Salvar</button>
                     <button type="button" onclick="limparFormulario()">Limpar</button>
@@ -67,7 +73,7 @@
                     </tr>
                 </thead>
                 <tbody id="corpoTabelaTransacoes">
-                    </tbody>
+                </tbody>
             </table>
 
             <div id="controles-paginacao" style="text-align: center; margin-top: 15px;">
@@ -77,8 +83,11 @@
             </div>
         </div>
     </div>
-    <div class="footer"><p id="saldoTotal">Aqui será exibido as somas de gastos e saldo</p></div>
+    <div class="footer">
+        <p id="saldoTotal">Aqui será exibido as somas de gastos e saldo</p>
+    </div>
 
-    <script src="./assets/scripts.js"></script> 
+    <script src="./assets/scripts.js"></script>
 </body>
+
 </html>
