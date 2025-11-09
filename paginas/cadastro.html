@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="../assets/style.css">
+<div class="container">
+        <div class="formulario">
+            <h2 id="formTitulo">Cadastro</h2>
+            <form id="transacaoForm">
+                <input type="hidden" id="transacaoId">
+
+                <div class="form-item">
+                    <label for="usuario">Usuário: </label>
+                    <input type="text" id="usuario" required>
+                </div>
+                <div class="form-item">
+                    <label for="conta">Conta: </label>
+                    <input type="text" id="conta">
+                </div>
+                <div class="form-item">
+                    <label for="descricao">Descrição: </label>
+                    <input type="text" id="descricao" required>
+                </div>
+                <div class="form-item">
+                    <label for="valor">Valor: </label>
+                    <input type="text" id="valor" required placeholder="Ex: -500.00 ou 2800.00">
+                </div>
+                <div class="form-item">
+                    <label for="data">Data: </label><br>
+                    <input type="date" id="data" required>
+                </div>
+
+                <div class="form-item">
+                    <button type="button" id="btnSalvar" onclick="salvarOuAtualizar()">Salvar</button>
+                    <button type="button" onclick="limparFormulario()">Limpar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tabela">
+            <h2>Registros</h2>
+            <table id="tabela-transacoes" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuário</th>
+                        <th>Conta</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="corpoTabelaTransacoes">
+                </tbody>
+            </table>
+
+            <div id="controles-paginacao" style="text-align: center; margin-top: 15px;">
+                <button id="btnAnterior" onclick="mudarPagina(-1)" disabled>Anterior</button>
+                <span id="infoPagina">Página 1 de 1</span>
+                <button id="btnProximo" onclick="mudarPagina(1)" disabled>Próximo</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/scripts.js"></script>

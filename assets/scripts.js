@@ -36,9 +36,9 @@ async function salvarOuAtualizar() {
     
     if (transacaoId) {
         dados.id = parseInt(transacaoId);
-        resultado = await pywebview.api.atualizar_transacao_js(dados);
+        resultado = await window.parent.pywebview.api.atualizar_transacao_js(dados);
     } else {
-        resultado = await pywebview.api.adicionar_transacao_js(dados);
+        resultado = await window.parent.pywebview.api.adicionar_transacao_js(dados);
     }
 
     if (resultado.status === 'sucesso') {
@@ -52,7 +52,7 @@ async function salvarOuAtualizar() {
 
 
 async function carregarParaEdicao(id) {
-    const transacao = await pywebview.api.obter_transacao_por_id_js(id);
+    const transacao = await window.parent.pywebview.api.obter_transacao_por_id_js(id);
     
     if (transacao) {
         document.getElementById('formTitulo').textContent = 'Edição de Transação';
@@ -82,7 +82,7 @@ function limparFormulario() {
 
 async function apagarTransacao(id) {
     if (confirm(`Tem certeza que deseja APAGAR a transação ID ${id}?`)) {
-        const resultado = await pywebview.api.deletar_transacao_js(id);
+        const resultado = await window.parent.pywebview.api.deletar_transacao_js(id);
         if (resultado.status === 'sucesso') {
             alert(resultado.mensagem);
             carregarTransacoes(); 
@@ -100,7 +100,7 @@ async function apagarTransacao(id) {
 // Função principal que busca os dados e inicializa a paginação
 async function carregarTransacoes() {
     // 1. Obter todos os dados do Python
-    transacoesAtuais = await pywebview.api.obter_transacoes_js();
+    transacoesAtuais = await window.parent.pywebview.api.obter_transacoes_js();
 
     // 2. Calcular o total de páginas
     totalPaginas = Math.ceil(transacoesAtuais.length / limitePorPagina);
@@ -193,6 +193,42 @@ function atualizarControlesPaginacao() {
 
 
 // Iniciar o carregamento da tabela quando a API Python estiver pronta
+//window.addEventListener('pywebviewready', () => {
+  //  carregarTransacoes(); 
+//});
+
+// script.js (O "CONTROLADOR" principal)
+
+let isPywebviewReady = false;
+let isFrameLoaded = false;    
+
+// 1. O Python avisa ao PAI que está pronto
 window.addEventListener('pywebviewready', () => {
-    carregarTransacoes(); 
+    isPywebviewReady = true;
+    tentarCarregarDadosIniciais();
 });
+
+// 2. O iframe avisa ao PAI que terminou de carregar
+function onFrameLoad() {
+    isFrameLoaded = true;
+    tentarCarregarDadosIniciais();
+}
+
+// 3. O PAI verifica se ambos estão prontos
+function tentarCarregarDadosIniciais() {
+    if (isPywebviewReady && isFrameLoaded) {
+
+        const frameWindow = document.getElementById('frame-pagina').contentWindow;
+
+        // 4. O PAI "cutuca" o FILHO e manda ele carregar
+        if (frameWindow && typeof frameWindow.carregarTransacoes === 'function') {
+            frameWindow.carregarTransacoes(); // Chama a função DENTRO do iframe
+        }
+    }
+}
+
+// 5. Sua função de navegação
+function navegar(urlPagina) {
+    isFrameLoaded = false; // Reseta o status, pois uma nova página vai carregar
+    document.getElementById('frame-pagina').src = urlPagina;
+}
